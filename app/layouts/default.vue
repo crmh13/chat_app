@@ -29,8 +29,21 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-lg-none" />
         
       <v-spacer />
-      <v-btn color="grey darken-2" to="/login" style="margin-right: 5px;">ログイン</v-btn>
-      <v-btn color="grey darken-2" to="/sign_in">新規登録</v-btn>
+      <v-btn
+        v-show="$auth.loggedIn"
+        @click="$auth.logout()"
+        color="grey darken-2"
+        style="margin-right: 5px;">
+        ログアウト
+      </v-btn>
+      <v-btn
+        v-show="!$auth.loggedIn"
+        color="grey darken-2"
+        to="/login"
+        style="margin-right: 5px;">
+        ログイン
+      </v-btn>
+      <v-btn v-show="!$auth.loggedIn" color="grey darken-2" to="/signup">新規登録</v-btn>
 
     </v-app-bar>
     <v-content>
@@ -63,8 +76,8 @@ export default {
       title: 'チャットアプリ'
     }
   },
-  mounted: function() {
-    this.$nextTick(function() {
+  mounted: function(this: any) {
+    this.$nextTick(function(this: any) {
       this.drawer = window.innerWidth < 1264 ? false: true
     })
   }

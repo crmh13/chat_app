@@ -1,6 +1,7 @@
+import { Configuration } from '@nuxt/types'
 const colors = require('vuetify/es5/util/colors').default
 
-module.exports = {
+const nuxtConfig: Configuration = {
   mode: 'universal',
   /*
   ** Headers of the page
@@ -47,13 +48,26 @@ module.exports = {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://localhost/'
+  },
+  auth: {
+    strategiies: {
+      local: {
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post', propertyName: 'token' },
+          logout: false,
+          user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+        }
+      }
+    }
   },
   /*
   ** vuetify module configuration
@@ -87,3 +101,5 @@ module.exports = {
     }
   }
 }
+
+module.exports = nuxtConfig
