@@ -29,7 +29,6 @@ export default Vue.extend({
       this.$auth.loginWith('local', {
         data: user
       }).then( (res: any) =>{
-        console.log(res.data)
         this.msg = res.data.error
       })
     }

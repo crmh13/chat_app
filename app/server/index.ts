@@ -71,9 +71,7 @@ app.post("/api/auth/register", jsonParser, async (req: Request, res: Response, n
 })
 
 app.post("/api/auth/login", jsonParser, async (req: Request, res: Response, next: NextFunction) => {
-  console.log(req.body)
   const user = await User.findOne({ name: req.body.name })
-  console.log(!user)
   if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
     return res.json({ "error": "ユーザー名もしくはパスワードが違います。" })
   }
@@ -101,13 +99,8 @@ app.get('/api/auth/user', (req: Request, res: Response, next: NextFunction) => {
   const token: string = bearer ? bearer[1] : ''
 
   jwt.verify(token, process.env.JWT_KEY, (err: any, user: any) => {
-    // if (err) {
-    //   //return res.sendStatus(403)
-    //   res.json({"error": 'error'})
-    // } else {
-      return res.json({
-        user
-      })
-    //}
+    return res.json({
+      user
+    })
   })
 })

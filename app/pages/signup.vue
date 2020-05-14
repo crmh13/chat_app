@@ -34,9 +34,7 @@ export default Vue.extend({
           }
           this.$auth.loginWith('local', {
             data: user
-          }).catch( (err: any) => {
-            console.log('err:', err);
-          });
+          })
         }
       )
     }
