@@ -4,4 +4,5 @@ WORKDIR /app
 
 RUN apk update && \
     apk add tzdata && \
-    npm i -g npm @vue/cli @vue/cli-init
+    npm i -g npm @vue/cli @vue/cli-init && \
+    yarn install

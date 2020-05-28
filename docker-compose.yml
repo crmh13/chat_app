@@ -29,4 +29,5 @@ services:
       - "3000:3000"
     stdin_open: true
     tty: true
-    command: yarn dev
+    #command: yarn dev
+    command: /bin/sh
